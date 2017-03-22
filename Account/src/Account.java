@@ -23,14 +23,13 @@ public void credit(){
 		
 		Scanner input = new Scanner(System.in);
 		double money = input.nextDouble();
-		accountBalance -= money;
-		// System.out.printf("There's too much money to withdraw. Enter again. \n");
-		
-		if(accountBalance<0){
-			accountBalance=0;
+		if(accountBalance<money){
+			System.out.printf("There's no Balance\n");
+		}else{
+			accountBalance -= money;
+			System.out.printf("subtractoing %.2f from %s balance",money,name);
+			System.out.printf("\n");
 		}
-		System.out.printf("subtractoing %.2f from %s balance",money,name);
-		System.out.printf("\n");
 	}
 
  	public void print(){
