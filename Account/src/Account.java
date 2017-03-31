@@ -1,40 +1,55 @@
 import java.util.Scanner;
-public class Account {
+public abstract class Account {
 
 public int num;
 public String name;
+private double balance;
 
-public Account(int num,String name){
-	this.num = num;
-	this.name = name;	
+public Account(double balance){
+	this.balance = balance;
 }
 
-public double accountBalance = 0;
+public double getBalance(){
+	return balance;
+}
+/*
+public double setBalance(){
+	return balance;
+}//잔액수정
+
+
 public void credit(){
 	System.out.printf("input money to %s:",name);
 	Scanner input = new Scanner(System.in);
 	double money = input.nextDouble();
-	accountBalance += money;
-	
+	balance += money;
 }
-	public void debit(){
+
+	public void debit(double amount){
 		System.out.printf("\n");
-		System.out.printf("Enter withdrawal amount for %s:",name);
+		System.out.printf("Enter withdrawal amount for %s:",name);	
 		
-		Scanner input = new Scanner(System.in);
-		double money = input.nextDouble();
-		if(accountBalance<money){
+		//Scanner input = new Scanner(System.in);
+		//double money = input.nextDouble();
+		if(balance<amount){
+			System.out.printf("subtractoing %.2f from %s balance",amount,name);
 			System.out.printf("There's no Balance\n");
 		}else{
-			accountBalance -= money;
-			System.out.printf("subtractoing %.2f from %s balance",money,name);
-			System.out.printf("\n");
+			balance -= amount;
+			System.out.printf("subtractoing %.2f from %s balance\n",amount,name);
+		
 		}
 	}
-
- 	public void print(){
- 	System.out.printf("%s balance:$%.2f",name,accountBalance);
- 	System.out.printf("\n");
-}
- 
+*/
+	public double debit(double amount){
+		balance -= amount;
+		return getBalance();
+	}
+	public double getWithdrawableAccount(){ //출금가능한 금액 확인
+		return getBalance();
+	}
+	
+	public double passTime(int month){//해당기간이 지난후 이자 계산
+		return balance;
+	}
 }
