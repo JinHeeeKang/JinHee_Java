@@ -6,10 +6,7 @@ public class Human implements Valuable{
 		this.name = name;
 		this.age = age;
 	}
-/*	
-	public double getValuable(){
-		return Double.POSITIVE_INFINITY;
-	}*/
+
 	@Override 
 	public double EstimateValue(int month){
  		return Double.POSITIVE_INFINITY;
