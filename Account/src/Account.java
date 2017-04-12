@@ -29,19 +29,26 @@ public void credit(){
 		//Scanner input = new Scanner(System.in);
 		//double money = input.nextDouble();
 		if(balance<amount){
-			System.out.printf("subtractoing %.2f from %s balance",amount,name);
+			System.out.printf("subtracting %.2f from %s balance",amount,name);
 			System.out.printf("There's no Balance\n");
 		}else{
 			balance -= amount;
-			System.out.printf("subtractoing %.2f from %s balance\n",amount,name);
+			System.out.printf("subtracting %.2f from %s balance\n",amount,name);
 		
 		}
 	}
 */
 	public double debit(double amount){
-		balance -= amount;
-		return getBalance();
+		if(getBalance()<amount){
+			System.out.println("금액이 너무 큽니다");
+			return getBalance();
+		}else{
+			balance -= amount;
+			return getBalance();
+		}
 	}
+
+
 	public double getWithdrawableAccount(){ //출금가능한 금액 확인
 		return getBalance();
 	}
