@@ -16,11 +16,17 @@ public class SavingsAccount extends Account implements Valuable{
  	public double getBalance(){ 
  		return balance; 
  	} 
- 	public double debit(double amount){ 
+ 	public double debit(double amount)throws Exception { 
  		//계약기간중에는 출금 불가 
+ 		//lab6 음수입력,한도초과에 대한 예외처리
  		if(month <12){ 
- 			System.out.println("아직 출금할 수 없습니다."); 
- 			return 0; 
+ 		//	System.out.println("아직 출금할 수 없습니다."); 
+ 			throw new Exception("아직 출금할 수 없습니다.");
+  
+ 		}else if(balance<amount){
+ 			throw new Exception("Debit amount excceded account balance.");
+ 		}else if(amount<0){
+ 			throw new Exception("음수입력!");
  		}else{ 
  			balance-=amount; 
  			return getBalance(); 

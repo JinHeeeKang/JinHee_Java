@@ -37,7 +37,7 @@ public void credit(){
 		
 		}
 	}
-*/
+
 	public double debit(double amount){
 		if(getBalance()<amount){
 			System.out.println("금액이 너무 큽니다");
@@ -47,8 +47,11 @@ public void credit(){
 			return getBalance();
 		}
 	}
-
-
+*/
+public double debit(double amount) throws Exception {
+	balance -= amount;
+	return balance;
+}
 	public double getWithdrawableAccount(){ //출금가능한 금액 확인
 		return getBalance();
 	}

@@ -17,11 +17,17 @@ public class CheckingAccount extends Account  implements Valuable{
  		return balance; 
  	} 
  	@Override 
- 	public double debit(double amount){ 
-  
+ 	public double debit(double amount) throws Exception { 
+  //인출은 이루어지지않음
+ 		if(balance<amount){
+ 			throw new Exception("Debit amount excceded account balance.");
+ 		}else if(amount<0){
+ 			throw new Exception("음수입력!");
+ 		}else{
  		balance -= amount; 
  		return balance; 
- 	} 
+ 		} 
+ 	}
   
  	@Override 
  	public double getWithdrawableAccount(){ //출금가능한 금액 확인 
