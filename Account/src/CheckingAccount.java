@@ -16,6 +16,13 @@ public class CheckingAccount extends Account  implements Valuable{
  	public double getBalance(){ 
  		return balance; 
  	} 
+ 	/*
+ 	public double credit(double amount){
+ 		
+ 		return 
+ 	}
+ 	*/
+ 	
  	@Override 
  	public double debit(double amount) throws Exception { 
   //인출은 이루어지지않음
@@ -43,8 +50,12 @@ public class CheckingAccount extends Account  implements Valuable{
  		balance +=  balance * (month*Math.pow(loanInterest,1)); 
  		return getBalance(); 
  	} 
+ 	@Override
+ 	public double passTime(){
+ 		balance +=  balance * (1*Math.pow(loanInterest,1)); 
+ 		return getBalance(); 
+ 	}
  	boolean isBankrupted(){//현재 금액이 파산(대출가능액을 초과)했는지 확인  
- 		 
  		if(getBalance()<-50){ 
  			return false ; 
  		}else{ 
@@ -58,5 +69,9 @@ public class CheckingAccount extends Account  implements Valuable{
 	public double EstimateValue(int month){
  		return balance + ((balance*interest)*month) ;
  	}
+	@Override
+	public double EstimateValue(){
+		return balance + ((balance*interest)*1) ;
+	}
  		 
  } 

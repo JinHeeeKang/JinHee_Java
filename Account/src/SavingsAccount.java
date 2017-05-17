@@ -8,6 +8,7 @@ public class SavingsAccount extends Account implements Valuable{
  	private double interest; 
  	public int month=0; 
  	 
+ 	
  	public SavingsAccount(double balance, double interest){ 
  		super(balance); 
  		this.balance = balance; 
@@ -50,7 +51,17 @@ public class SavingsAccount extends Account implements Valuable{
  		}else{ 
  			return getBalance(); 
  		} 	 
- 	} 
+ 	}
+ 	@Override
+ 	public double passTime(){
+ 		
+ 		if(month == 12){ 
+ 			balance = balance * (Math.pow((1+interest),1)); 
+ 			return getBalance(); 
+ 		}else{ 
+ 			return getBalance(); 
+ 		} 	 
+ 	}
 	public String toString(){
 		return String.format("SavingsAccount_Balance: %.2f",balance);
 	}
@@ -58,6 +69,11 @@ public class SavingsAccount extends Account implements Valuable{
 	public double EstimateValue(int month){
  		return  balance * (Math.pow((1+interest),month));
  	}
+ 	@Override
+ 	public double EstimateValue(){
+ 		return  balance * (Math.pow((1+interest),1));
+		
+	}
  	
  	
  	 

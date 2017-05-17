@@ -1,93 +1,172 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AccountTest {
-	public static void main(String[] args){
+	public static void main(String args[]) throws Exception{
+	/*	
+		
+		 * 메소드 오버로딩에 대해 테스트 하는 코드입니다.
+		 * 변수명 및 메소드명 외 다른 부분은 절대 수정하지 마세요.
+	//	 
+		
+		Scanner scan = new Scanner(System.in);
+		
+		Valuable[] objectList = new Valuable[4];
+		
+		objectList[0] = new CheckingAccount(100,50,0.01,0.07);
+		objectList[1] = new SavingsAccount(100,0.05);
+		objectList[2] = new Human("Mark", 20);
+		objectList[3] = new Car("MyCar", 5000);
+		
+		for(Valuable objectItem : objectList){
+			System.out.printf("%s \n", objectItem.toString());
+			System.out.printf("1 month later Value (Method Overloding, no parameter) : %.2f\n", objectItem.EstimateValue());
+			System.out.printf("5 month later Value : %.2f\n\n", objectItem.EstimateValue(5));
+		}
+		
+		
+
+		 * 여기부터 중간고사 이전까지의 실습을 전체적으로 테스트합니다.
+		 * 변수명 및 메소드명 외 다른 부분은 절대 수정하지 마세요.
+		 
+		*/
 		Account account1 = new CheckingAccount(100,50,0.01,0.07);
 		Account account2 = new SavingsAccount(100,0.05);
+	//	CheckingAccount c_account1 = (CheckingAccount)account1;
+		
+		ArrayList<Account> accountList = new ArrayList<Account>();
+		int i=0;
+		accountList.add(account1);
+		accountList.add(account2);
 
-		Scanner scan = new Scanner(System.in);
-		double amount;
+		System.out.printf("전체 계좌의 잔액 합산 : " + Account.sumForAccount(accountList));
 		
-		try{
-			System.out.println("Enter deposit amount for Account1:");
-			amount = scan.nextDouble();
-			account1.debit(amount);
-			System.out.printf("Account1 balance: $"+account1.getBalance()+"\n");
-			
-			
-			System.out.println("Enter deposit amount for Account2:");
-			amount = scan.nextDouble();
-			account2.debit(amount);
-			System.out.printf("Account2 balance: $"+account2.getBalance());
-		}catch(InputMismatchException e){
-			System.out.println("예외발생 : 숫자를 입력하세요\n"+ e.toString());
-		}catch(Exception e){
-			System.out.println("예외발생    "+ e.toString());
-		}finally{
-			account1.passTime(2);
-			System.out.printf("2 month later Account1 : $"+account1.getBalance());
-		}
-			
-		
+		System.out.print("\n전체 계좌의 12개윌 후 적용\n");
+		Account.passTimeForLIst(accountList, 12);
+		System.out.printf("전체 계좌의 잔액 합산 : " + Account.sumForAccount(accountList));
 	}
 }
+/*		int cmd;
+		do{
+			double amount = 0;
+			cmd = scan.nextInt();
+			switch(cmd){
+				//CheckingAccount 테스트 
+				case 1 : 
+					try{ 
+						System.out.println("$100 입금");
+				//		account1.credit(100);
+						System.out.printf("Account1의 잔액 : $%.2f\n",account1.getBalance());
+						System.out.printf("Account1의 출금가능액 : $%.2f\n",account1.getWithdrawableAccount());
+						System.out.println("------------------------------------------------------");
+						
+						System.out.println("$150 출금");
+						account1.debit(150);
+						System.out.printf("Account1의 잔액 : $%.2f\n",account1.getBalance());
+						System.out.printf("Account1의 출금가능액 : $%.2f\n",account1.getWithdrawableAccount());
+						if(c_account1.isBankrupted()==true)
+							System.out.println("파산");
+						System.out.println("------------------------------------------------------");
+						
+						account1.passTime();
+						System.out.printf("1개월 뒤 가치변화 후 Account1의 잔액 : $%.2f\n",account1.getBalance());
+						System.out.printf("Account1의 출금가능액 : $%.2f\n",account1.getWithdrawableAccount());
+						if(c_account1.isBankrupted()==true)
+							System.out.println("파산");
+						System.out.println("------------------------------------------------------");
+							
+					
+						System.out.println("$80 출금");
+						account1.debit(80);
+						System.out.printf("Account1의 잔액 : $%.2f\n",account1.getBalance());
+						System.out.printf("Account1의 출금가능액 : $%.2f\n",account1.getWithdrawableAccount());
+						if(c_account1.isBankrupted()==true)
+							System.out.println("파산");
+						System.out.println("------------------------------------------------------");
+						
+						System.out.print("5개윌 뒤 가치 : ");
+						account1.passTime(5);
+						System.out.printf("5개월 뒤 가치 변화 후 Account1의 잔액 : $%.2f\n",account1.getBalance());
+						System.out.printf("Account1의 출금가능액 : $%.2f\n",account1.getWithdrawableAccount());
+						if(c_account1.isBankrupted()==true)
+							System.out.println("파산");
+						System.out.println("------------------------------------------------------");
+						
+						System.out.println("amount에 음수입력");
+						account1.debit(-1);
+						System.out.println("------------------------------------------------------");
+						
+					}catch(InputMismatchException e){
+						System.out.println("예외발생 " + e.toString() + ": 숫자를 입력하세요\n");
+					}
+					catch(Exception e){
+						System.out.println("예외발생   "+e.toString());
+					}
+					
+					break;
+			
+				
+				//SavingsAccount 테스트 
+				case 2 : 
+					try{ 
+						System.out.println("$150 출금");
+						account2.debit(150);
+						System.out.printf("Account2의 잔액 : $%.2f\n",account2.getBalance());
+						System.out.printf("Account2의 출금가능액 : $%.2f\n",account2.getWithdrawableAccount());
+						
+					}catch(InputMismatchException e){
+						System.out.println("예외발생 " + e.toString() + ": 숫자를 입력하세요\n");
+					}
+					catch(Exception e){
+						System.out.println("예외발생   "+e.toString());
+					}
+					break;
+					
+				case 3 :
+					try{ 
+						account2.passTime();
+						
+						System.out.printf("1개월 뒤 가치변화 후 Account2의 잔액 : $%.2f\n",account2.getBalance());
+						System.out.printf("Account2의 출금가능액 : $%.2f\n",account2.getWithdrawableAccount());
+						System.out.printf("1개윌 째의 가치 : %.2f\n",((Valuable) account2).EstimateValue());
+						System.out.println("------------------------------------------------------");
 		
-		/*
-		 //CheckingAccount
-		System.out.printf("Account1 balance: $ %.2f \t 현재출금가능액: %.2f\n",account1.getBalance()
-				,account1.getWithdrawableAccount());
-		
-		System.out.println("Enter withdrawal amount for Account1:");
-		amount = scan.nextDouble();
-		account1.debit(amount);
-		System.out.printf("Account1 balance: $ %.2f \t 현재출금가능액: %.2f\n",account1.getBalance()
-				,account1.getWithdrawableAccount());
-		if(((CheckingAccount)account1).isBankrupted()==false){
-			System.out.println("account1 went Bankrupt!");
-		}//파산여부확인1
-		//isBankrupt 이용 - typecasting 사용
-		
-		account1.passTime(1);
-		System.out.printf("Account1 balance: $ %.2f \t 현재출금가능액: %.2f\n",account1.getBalance()
-				,account1.getWithdrawableAccount());
+						account2.passTime(5);
+						System.out.printf("5개월 뒤 가치 변화 후 Account2의 잔액 : $%.2f\n",account2.getBalance());
+						System.out.printf("Account1의 출금가능액 : $%.2f\n",account2.getWithdrawableAccount());
+						System.out.printf("6개윌 째의 가치 : %.2f\n",((Valuable) account2).EstimateValue(6));
+						System.out.println("------------------------------------------------------");
+						
+						account2.passTime(5);
+						System.out.printf("5개월 뒤 가치 변화 후 Account2의 잔액 : $%.2f\n",account2.getBalance());
+						System.out.printf("Account2의 출금가능액 : $%.2f\n",account2.getWithdrawableAccount());
+						System.out.printf("11개월 째의 가치 %.2f\n",((Valuable) account2).EstimateValue(11));
+						System.out.println("------------------------------------------------------");
+						
+						account2.passTime();
+						System.out.printf("1개월 뒤 가치변화 후 Account2의 잔액 : $%.2f\n",account2.getBalance());
+						System.out.printf("Account2의 출금가능액 : $%.2f\n",account2.getWithdrawableAccount());
 	
-		if(((CheckingAccount)account1).isBankrupted()==false){
-			System.out.println("account1 went Bankrupt!");
-		} //파산여부확인2
-		
-		account1.passTime(5);
-		System.out.printf("Account1 balance: $ %.2f \t 현재출금가능액: %.2f\n",account1.getBalance()
-				,account1.getWithdrawableAccount());
-		
-		if(((CheckingAccount)account1).isBankrupted()==false){
-			System.out.println("account1 went Bankrupt!");
-		} //파산여부확인3
-		
-		
-		//SavingAccount
-		System.out.println();
-		System.out.printf("Account2 balance: $ %.2f \t 현재출금가능액: %.2f\n",account2.getBalance()
-				,account2.getWithdrawableAccount());
-		
-		System.out.println("6 Month later!");
-		account2.passTime(6);
-		System.out.printf("Account2 balance: $ %.2f \t 현재출금가능액: %.2f\n",account2.getBalance()
-				,account2.getWithdrawableAccount());
-		account2.debit(50);
-	
-		System.out.println("next 6 Month later!");
-		account2.passTime(6);
-		System.out.printf("Account2 balance: $ %.2f \t 현재출금가능액: %.2f\n",account2.getBalance()
-				,account2.getWithdrawableAccount());
-		
-		System.out.println("next 1 Month later!");
-		account2.passTime(1);
-		System.out.printf("Account2 balance: $ %.2f \t 현재출금가능액: %.2f\n",account2.getBalance()
-				,account2.getWithdrawableAccount());
-		account2.debit(50);
-		System.out.printf("Account2 balance: $ %.2f \t 현재출금가능액: %.2f\n",account2.getBalance()
-				,account2.getWithdrawableAccount());
-	
-	}
-*/
+						System.out.println("------------------------------------------------------");
+						
+						System.out.println("amount에 음수입력");
+						account1.debit(-1);
+						System.out.println("------------------------------------------------------");
+						
+					}catch(InputMismatchException e){
+						System.out.println("예외발생 " + e.toString() + ": 숫자를 입력하세요\n");
+					}
+					catch(Exception e){
+						System.out.println("예외발생   "+e.toString());
+						
+					}		
+					break;
+					
+				case 0 : System.out.println("끝");
+			}	
+		}while(cmd!=0);		
+	} 
+	*/
+
+

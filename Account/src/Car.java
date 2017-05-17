@@ -16,6 +16,10 @@ public class Car implements Valuable {
  			return price*0.99; 
  		}
  	}
+ 	@Override
+	public double EstimateValue(){
+		return price*0.8;
+ 	}
  	public String toString(){
 		return String.format("car name: %s \ninitial price: %.2f",name,price);
 	}

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 public abstract class Account {
 
@@ -48,6 +49,19 @@ public void credit(){
 		}
 	}
 */
+public static double sumForAccount(ArrayList<? extends Account> list){
+	double sum = 0;
+	for(Account account : list){
+		sum += account.getBalance();
+	}
+	return sum;
+}
+public static void passTimeForLIst(ArrayList<? extends Account> list, int month){
+	for(Account account : list){
+		account.passTime(month);
+	}
+}
+//int i = 0; i < list.size(); i++
 public double debit(double amount) throws Exception {
 	balance -= amount;
 	return balance;
@@ -59,4 +73,9 @@ public double debit(double amount) throws Exception {
 	public double passTime(int month){//해당기간이 지난후 이자 계산
 		return balance;
 	}
+
+	public double passTime() {
+		return  balance;
+	}
+
 }
